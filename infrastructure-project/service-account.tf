@@ -25,6 +25,8 @@ resource "google_service_account_key" "key" {
   }
 }
 
+# This SA needs to be able to do some privileged work
+#tfsec:ignore:google-iam-no-privileged-service-accounts
 resource "google_project_iam_binding" "iam_binding_project" {
   for_each = toset(local.project_roles)
   project  = var.project_id
