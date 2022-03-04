@@ -38,19 +38,19 @@ resource "github_actions_secret" "gcp_projectid_secret" {
 }
 
 resource "github_actions_secret" "docker_registry_token" {
-  repository      = data.github_repository.target.id
+  repository      = github_repository.repository.id
   secret_name     = "DOCKER_REGISTRY_TOKEN"
   plaintext_value = var.docker_registry_token
 }
 
 resource "github_actions_secret" "docker_registry_username" {
-  repository      = data.github_repository.target.id
+  repository      = github_repository.repository.id
   secret_name     = "DOCKER_REGISTRY_USERNAME"
   plaintext_value = var.docker_registry_username
 }
 
 resource "github_actions_secret" "codacy_api_token" {
-  repository      = data.github_repository.target.id
+  repository      = github_repository.repository.id
   secret_name     = "CODACY_API_TOKEN"
   plaintext_value = var.codacy_api_token
 }
