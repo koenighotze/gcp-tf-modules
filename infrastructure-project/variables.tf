@@ -23,3 +23,13 @@ variable "github_admin_token" {
   sensitive   = true
   description = "The API Token for the GitHub API"
 }
+
+variable "workload_identity_provider_name" {
+  type        = string
+  description = "The name of the workload identity provider"
+}
+
+variable "workload_identity_pool_id" {
+  type        = string
+  description = "The id of the workload identity pool"
+}

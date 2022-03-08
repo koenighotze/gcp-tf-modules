@@ -20,11 +20,12 @@ resource "github_repository" "infrastructure_repository" {
   vulnerability_alerts   = true
 }
 
-resource "github_actions_secret" "cicd_cloudrun_sa_secret" {
-  repository      = github_repository.infrastructure_repository.id
-  secret_name     = "GCP_SA_KEY"
-  plaintext_value = google_service_account_key.key.private_key
-}
+# No more keys...we'll use workload identity instead
+# resource "github_actions_secret" "cicd_cloudrun_sa_secret" {
+#   repository      = github_repository.infrastructure_repository.id
+#   secret_name     = "GCP_SA_KEY"
+#   plaintext_value = google_service_account_key.key.private_key
+# }
 
 resource "github_actions_secret" "gcp_projectid_secret" {
   repository      = github_repository.infrastructure_repository.id
@@ -71,3 +72,19 @@ resource "github_branch_protection" "main" {
 #   secret_name     = "CODACY_API_TOKEN"
 #   plaintext_value = var.codacy_api_token
 # }
+
+resource "github_actions_secret" "workload_identity_provider" {
+  repository      = github_repository.infrastructure_repository.id
+  secret_name     = "WORKLOAD_IDENTITY_PROVIDER"
+  plaintext_value = var.workload_identity_provider_name
+}
+
+# Allow repository to use deployer service account
+resource "google_service_account_iam_binding" "workload_identity_sa_binding" {
+  service_account_id = google_service_account.service_account.id
+  role               = "roles/iam.workloadIdentityUser"
+
+  members = [
+    "principalSet://iam.googleapis.com/${var.workload_identity_pool_id}/attribute.repository/${github_repository.infrastructure_repository.name}",
+  ]
+}
