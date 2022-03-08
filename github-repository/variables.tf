@@ -26,7 +26,12 @@ variable "gcp_project_id" {
   description = "The ID of the GCP project as the deployment target"
 }
 
-variable "gcp_sa_private_key" {
+variable "workload_identity_provider_name" {
   type        = string
-  description = "The private key of the GCP service account used for deployment"
+  description = "The name of the workload identity provider"
+}
+
+variable "workload_identity_pool_id" {
+  type        = string
+  description = "The id of the workload identity pool"
 }
