@@ -49,7 +49,7 @@ resource "github_actions_secret" "sa_email_address" {
   plaintext_value = google_service_account.service_account.email
 }
 
-resource "github_actions_secret" "sa_email_address" {
+resource "github_actions_secret" "sa_id" {
   repository      = github_repository.infrastructure_repository.id
   secret_name     = "CICD_SA_ID" # todo replace with label token
   plaintext_value = google_service_account.service_account.id
