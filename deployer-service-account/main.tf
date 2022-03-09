@@ -1,3 +1,10 @@
+locals {
+  deployer_default_roles = [
+    "roles/logging.logWriter",
+    "roles/viewer"
+  ]
+}
+
 resource "google_service_account" "cicd_cloudrun_sa" {
   project      = var.gcp_project_id
   account_id   = var.name
@@ -15,4 +22,16 @@ resource "google_service_account" "cicd_cloudrun_sa" {
 
 resource "google_service_account_key" "cicd_cloudrun_sa_key" {
   service_account_id = google_service_account.cicd_cloudrun_sa.name
+}
+
+# This SA needs to be able to do some privileged work
+#tfsec:ignore:google-iam-no-privileged-service-accounts
+resource "google_project_iam_binding" "iam_binding_project" {
+  for_each = setunion(toset(local.deployer_default_roles), var.additional_deployer_sa_roles)
+  project  = var.project_id
+  role     = each.value
+
+  members = [
+    "serviceAccount:${google_service_account.service_account.email}"
+  ]
 }

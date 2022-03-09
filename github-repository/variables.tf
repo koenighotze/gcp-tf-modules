@@ -2,18 +2,21 @@ variable "codacy_api_token" {
   type        = string
   sensitive   = true
   description = "The API token for uploading coverage data"
+  default     = ""
 }
 
 variable "docker_registry_username" {
   type        = string
   sensitive   = true
   description = "The username for uploading images"
+  default     = ""
 }
 
 variable "docker_registry_token" {
   type        = string
   sensitive   = true
   description = "The API token for uploading images"
+  default     = ""
 }
 
 variable "target_repository_name" {
@@ -36,7 +39,19 @@ variable "workload_identity_pool_id" {
   description = "The id of the workload identity pool"
 }
 
-variable "service_account_id" {
+variable "deployer_service_account_id" {
   type        = string
   description = "The id of the service account used in ci/cd"
+}
+
+variable "github_admin_token" {
+  type        = string
+  sensitive   = true
+  description = "The API Token for the GitHub API"
+}
+
+variable "github_non_admin_token" {
+  type        = string
+  sensitive   = true
+  description = "The API Token for the GitHub API to be used on pull requests"
 }

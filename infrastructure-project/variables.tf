@@ -1,3 +1,6 @@
+# TODO Add labels to gcp resources
+# labels = merge(local.common_labels, { name = "${var.environment}-rtb" })
+
 variable "project_id" {
   type        = string
   sensitive   = false

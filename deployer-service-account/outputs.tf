@@ -1,3 +1,7 @@
-output "service_account_name" {
-  value = google_service_account.cicd_cloudrun_sa.name
+output "service_account_email" {
+  value = google_service_account.cicd_cloudrun_sa.email
+}
+
+output "service_account_id" {
+  value = google_service_account.cicd_cloudrun_sa.id
 }
