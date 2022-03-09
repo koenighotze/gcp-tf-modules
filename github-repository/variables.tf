@@ -35,3 +35,8 @@ variable "workload_identity_pool_id" {
   type        = string
   description = "The id of the workload identity pool"
 }
+
+variable "service_account_id" {
+  type        = string
+  description = "The id of the service account used in ci/cd"
+}
