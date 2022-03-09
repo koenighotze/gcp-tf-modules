@@ -2,7 +2,6 @@ locals {
   repository_name = "${var.project_name}-infrastructure-tmp"
 }
 
-
 resource "github_repository" "infrastructure_repository" {
   name        = local.repository_name
   description = "Infrastructure for ${var.project_name}"
@@ -20,13 +19,6 @@ resource "github_repository" "infrastructure_repository" {
   vulnerability_alerts   = true
 }
 
-# No more keys...we'll use workload identity instead
-# resource "github_actions_secret" "cicd_cloudrun_sa_secret" {
-#   repository      = github_repository.infrastructure_repository.id
-#   secret_name     = "GCP_SA_KEY"
-#   plaintext_value = google_service_account_key.key.private_key
-# }
-
 resource "github_actions_secret" "gcp_projectid_secret" {
   repository      = github_repository.infrastructure_repository.id
   secret_name     = "GCP_PROJECT_ID"
@@ -43,6 +35,24 @@ resource "github_actions_secret" "github_api_token" {
   repository      = github_repository.infrastructure_repository.id
   secret_name     = "ADMIN_GITHUB_TOKEN"
   plaintext_value = var.github_admin_token
+}
+
+resource "github_actions_secret" "github_api_token" {
+  repository      = github_repository.infrastructure_repository.id
+  secret_name     = "GH_TOKEN_FOR_LABELING" # todo replace with label token
+  plaintext_value = var.github_admin_token
+}
+
+resource "github_actions_secret" "sa_email_address" {
+  repository      = github_repository.infrastructure_repository.id
+  secret_name     = "CICD_SA_EMAIL_ADDRESS" # todo replace with label token
+  plaintext_value = google_service_account.service_account.email
+}
+
+resource "github_actions_secret" "sa_email_address" {
+  repository      = github_repository.infrastructure_repository.id
+  secret_name     = "CICD_SA_ID" # todo replace with label token
+  plaintext_value = google_service_account.service_account.id
 }
 
 resource "github_branch_protection" "main" {
@@ -72,19 +82,3 @@ resource "github_branch_protection" "main" {
 #   secret_name     = "CODACY_API_TOKEN"
 #   plaintext_value = var.codacy_api_token
 # }
-
-resource "github_actions_secret" "workload_identity_provider" {
-  repository      = github_repository.infrastructure_repository.id
-  secret_name     = "WORKLOAD_IDENTITY_PROVIDER"
-  plaintext_value = var.workload_identity_provider_name
-}
-
-# Allow repository to use deployer service account
-resource "google_service_account_iam_binding" "workload_identity_sa_binding" {
-  service_account_id = google_service_account.service_account.id
-  role               = "roles/iam.workloadIdentityUser"
-
-  members = [
-    "principalSet://iam.googleapis.com/${var.workload_identity_pool_id}/attribute.repository/${github_repository.infrastructure_repository.name}",
-  ]
-}

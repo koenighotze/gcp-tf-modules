@@ -7,3 +7,8 @@ Terraform module for gcp infrastructure projects
 *  [deployer-service-account](deployer-service-account/README.md)
 *  [github-repository](github-repository/README.md)
 *  [infrastructure-project](infrastructure-project/README.md)
+
+
+TODO:
+pass GH Label Token to repos
+pass SA name to repos
