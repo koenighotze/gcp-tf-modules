@@ -16,6 +16,6 @@ resource "google_service_account_iam_binding" "workload_identity_sa_binding" {
   role               = "roles/iam.workloadIdentityUser"
 
   members = [
-    "principalSet://iam.googleapis.com/${var.workload_identity_pool_id}/attribute.repository/${github_repository.infrastructure_repository.name}",
+    "principalSet://iam.googleapis.com/${var.workload_identity_pool_id}/attribute.repository/${github_repository.infrastructure_repository.full_name}",
   ]
 }
