@@ -37,7 +37,7 @@ resource "github_actions_secret" "github_api_token" {
   plaintext_value = var.github_admin_token
 }
 
-resource "github_actions_secret" "github_api_token" {
+resource "github_actions_secret" "github_api_label_token" {
   repository      = github_repository.infrastructure_repository.id
   secret_name     = "GH_TOKEN_FOR_LABELING" # todo replace with label token
   plaintext_value = var.github_admin_token
