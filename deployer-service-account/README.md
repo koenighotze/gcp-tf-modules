@@ -22,6 +22,7 @@ No modules.
 
 | Name | Type |
 |------|------|
+| [google_project_iam_binding.iam_binding_project](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/project_iam_binding) | resource |
 | [google_service_account.cicd_cloudrun_sa](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/service_account) | resource |
 | [google_service_account_key.cicd_cloudrun_sa_key](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/service_account_key) | resource |
 
@@ -29,6 +30,7 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_additional_deployer_sa_roles"></a> [additional\_deployer\_sa\_roles](#input\_additional\_deployer\_sa\_roles) | Additional roles that the deployer service account should own | `list` | `[]` | no |
 | <a name="input_gcp_project_id"></a> [gcp\_project\_id](#input\_gcp\_project\_id) | The GCP project id | `string` | n/a | yes |
 | <a name="input_name"></a> [name](#input\_name) | The name of the service account | `string` | n/a | yes |
 
@@ -36,6 +38,6 @@ No modules.
 
 | Name | Description |
 |------|-------------|
-| <a name="output_service_account_name"></a> [service\_account\_name](#output\_service\_account\_name) | n/a |
-| <a name="output_service_account_private_key"></a> [service\_account\_private\_key](#output\_service\_account\_private\_key) | n/a |
+| <a name="output_service_account_email"></a> [service\_account\_email](#output\_service\_account\_email) | n/a |
+| <a name="output_service_account_id"></a> [service\_account\_id](#output\_service\_account\_id) | n/a |
 <!-- END_TF_DOCS -->

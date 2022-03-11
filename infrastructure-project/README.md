@@ -26,9 +26,6 @@ No modules.
 | Name | Type |
 |------|------|
 | [github_actions_secret.gcp_projectid_secret](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/actions_secret) | resource |
-| [github_actions_secret.github_api_token](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/actions_secret) | resource |
-| [github_actions_secret.sa_email_address](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/actions_secret) | resource |
-| [github_actions_secret.terraform_bucket_name](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/actions_secret) | resource |
 | [github_actions_secret.workload_identity_pool_id](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/actions_secret) | resource |
 | [github_actions_secret.workload_identity_provider](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/actions_secret) | resource |
 | [github_branch_protection.main](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/branch_protection) | resource |
@@ -47,7 +44,11 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_codacy_api_token"></a> [codacy\_api\_token](#input\_codacy\_api\_token) | The API token for uploading coverage data | `string` | `""` | no |
+| <a name="input_docker_registry_token"></a> [docker\_registry\_token](#input\_docker\_registry\_token) | The API token for uploading images | `string` | `""` | no |
+| <a name="input_docker_registry_username"></a> [docker\_registry\_username](#input\_docker\_registry\_username) | The username for uploading images | `string` | `""` | no |
 | <a name="input_github_admin_token"></a> [github\_admin\_token](#input\_github\_admin\_token) | The API Token for the GitHub API | `string` | n/a | yes |
+| <a name="input_github_api_label_token"></a> [github\_api\_label\_token](#input\_github\_api\_label\_token) | The API Token for the GitHub API with fewer privileges used for pull requests | `string` | n/a | yes |
 | <a name="input_github_org_name"></a> [github\_org\_name](#input\_github\_org\_name) | n/a | `string` | `"koenighotze"` | no |
 | <a name="input_location"></a> [location](#input\_location) | n/a | `string` | `"europe-west3"` | no |
 | <a name="input_project_id"></a> [project\_id](#input\_project\_id) | The id of the project | `string` | n/a | yes |
