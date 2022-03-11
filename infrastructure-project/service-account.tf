@@ -3,7 +3,7 @@ locals {
     "roles/logging.logWriter",
     "roles/viewer",
     "roles/iam.serviceAccountCreator",
-    "roles/iam.serviceAccounts.delete",
+    "roles/iam.serviceAccountDeleter",
     "roles/iam.serviceAccountKeyAdmin"
   ]
 }
