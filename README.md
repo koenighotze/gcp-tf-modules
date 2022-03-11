@@ -13,3 +13,5 @@ Terraform module for gcp infrastructure projects
 TODO:
 pass GH Label Token to repos
 pass SA name to repos
+put secrets into secret manager
+"general-secrets-no-plaintext-exposure"
