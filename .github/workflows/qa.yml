@@ -16,7 +16,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - run: docker run -ti -v ${PWD}:/src aquasec/tfsec:v1.8 /src
+      - run: docker run -v ${PWD}:/src aquasec/tfsec:v1.8 /src
 
   lint:
     runs-on: ubuntu-20.04
