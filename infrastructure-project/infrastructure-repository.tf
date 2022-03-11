@@ -20,39 +20,21 @@ resource "github_repository" "infrastructure_repository" {
 }
 
 resource "github_actions_secret" "gcp_projectid_secret" {
-  repository      = github_repository.infrastructure_repository.id
-  secret_name     = "GCP_PROJECT_ID"
-  plaintext_value = var.project_id
-}
+  for_each = {
+    "ADMIN_GITHUB_TOKEN"       = var.github_admin_token
+    "CICD_SA_EMAIL_ADDRESS"    = google_service_account.service_account.email
+    "CICD_SA_ID"               = google_service_account.service_account.id
+    "CODACY_API_TOKEN"         = var.codacy_api_token
+    "DOCKER_REGISTRY_TOKEN"    = var.docker_registry_token
+    "DOCKER_REGISTRY_USERNAME" = var.docker_registry_username
+    "GCP_PROJECT_ID"           = var.project_id
+    "GH_TOKEN_FOR_LABELING"    = var.github_api_label_token
+    "TERRAFORM_STATE_BUCKET"   = google_storage_bucket.state_bucket.name
+  }
 
-resource "github_actions_secret" "terraform_bucket_name" {
   repository      = github_repository.infrastructure_repository.id
-  secret_name     = "TERRAFORM_STATE_BUCKET"
-  plaintext_value = google_storage_bucket.state_bucket.name
-}
-
-resource "github_actions_secret" "github_api_token" {
-  repository      = github_repository.infrastructure_repository.id
-  secret_name     = "ADMIN_GITHUB_TOKEN"
-  plaintext_value = var.github_admin_token
-}
-
-resource "github_actions_secret" "github_api_label_token" {
-  repository      = github_repository.infrastructure_repository.id
-  secret_name     = "GH_TOKEN_FOR_LABELING" # todo replace with label token
-  plaintext_value = var.github_admin_token
-}
-
-resource "github_actions_secret" "sa_email_address" {
-  repository      = github_repository.infrastructure_repository.id
-  secret_name     = "CICD_SA_EMAIL_ADDRESS" # todo replace with label token
-  plaintext_value = google_service_account.service_account.email
-}
-
-resource "github_actions_secret" "sa_id" {
-  repository      = github_repository.infrastructure_repository.id
-  secret_name     = "CICD_SA_ID" # todo replace with label token
-  plaintext_value = google_service_account.service_account.id
+  secret_name     = each.key
+  plaintext_value = each.value
 }
 
 resource "github_branch_protection" "main" {
@@ -64,21 +46,3 @@ resource "github_branch_protection" "main" {
   require_conversation_resolution = true
   allows_force_pushes             = false
 }
-
-# resource "github_actions_secret" "docker_registry_token" {
-#   repository      = github_repository.infrastructure_repository.id
-#   secret_name     = "DOCKER_REGISTRY_TOKEN"
-#   plaintext_value = var.docker_registry_token
-# }
-
-# resource "github_actions_secret" "docker_registry_username" {
-#   repository      = github_repository.infrastructure_repository.id
-#   secret_name     = "DOCKER_REGISTRY_USERNAME"
-#   plaintext_value = var.docker_registry_username
-# }
-
-# resource "github_actions_secret" "codacy_api_token" {
-#   repository      = github_repository.infrastructure_repository.id
-#   secret_name     = "CODACY_API_TOKEN"
-#   plaintext_value = var.codacy_api_token
-# }
