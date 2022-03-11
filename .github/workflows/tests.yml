@@ -9,7 +9,7 @@ on:
 env:
   TF_IN_AUTOMATION: "true"
   # Note: this project has to exist for 'plan' to execute
-  TF_project_id: "cloud-run-tutorial-324718"
+  TF_project_id: "koenighotze-seed"
 
 permissions:
   id-token: write
