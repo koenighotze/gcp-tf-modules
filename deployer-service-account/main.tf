@@ -28,10 +28,10 @@ resource "google_service_account_key" "cicd_cloudrun_sa_key" {
 #tfsec:ignore:google-iam-no-privileged-service-accounts
 resource "google_project_iam_binding" "iam_binding_project" {
   for_each = setunion(toset(local.deployer_default_roles), var.additional_deployer_sa_roles)
-  project  = var.project_id
+  project  = var.gcp_project_id
   role     = each.value
 
   members = [
-    "serviceAccount:${google_service_account.service_account.email}"
+    "serviceAccount:${google_service_account.cicd_cloudrun_sa.email}"
   ]
 }
