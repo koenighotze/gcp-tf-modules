@@ -11,15 +11,21 @@ env:
   TF_INPUT: "false"
 
 jobs:
-  security-scan:
+  lint:
     runs-on: ubuntu-20.04
+
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: tfsec
-        uses: triat/terraform-security-scan@v3.0.1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/checkout@v3
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1.3.2
+      - uses: terraform-linters/setup-tflint@v1
+        name: Setting up TFLint
+        with:
+          tflint_version: v0.29.0
+      - name: Initializing TFLint
+        run: tflint --init
+      - name: Linting
+        run: tflint -f compact
 
   qa:
     runs-on: ubuntu-20.04
