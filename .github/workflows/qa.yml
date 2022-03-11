@@ -11,14 +11,12 @@ env:
   TF_INPUT: "false"
 
 jobs:
-  # security-scan:
-  #   runs-on: ubuntu-20.04
-  #   container:
-  #     image: aquasec/tfsec:v1.8
+  security-scan:
+    runs-on: ubuntu-20.04
 
-  #   steps:
-  #     - uses: actions/checkout@v3
-  #     - run: ls -la
+    steps:
+      - uses: actions/checkout@v3
+      - run: docker run -ti -v ${PWD}:/src aquasec/tfsec:v1.8 /src
 
   lint:
     runs-on: ubuntu-20.04
