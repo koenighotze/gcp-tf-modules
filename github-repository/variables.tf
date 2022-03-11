@@ -24,7 +24,7 @@ variable "target_repository_name" {
   description = "The full name of the repository that is setup"
 }
 
-variable "gcp_project_id" {
+variable "project_id" {
   type        = string
   description = "The ID of the GCP project as the deployment target"
 }
@@ -39,9 +39,9 @@ variable "workload_identity_pool_id" {
   description = "The id of the workload identity pool"
 }
 
-variable "deployer_service_account_id" {
+variable "deployer_service_account_email" {
   type        = string
-  description = "The id of the service account used in ci/cd"
+  description = "The email of the service account used in ci/cd"
 }
 
 variable "github_admin_token" {
@@ -54,4 +54,10 @@ variable "github_non_admin_token" {
   type        = string
   sensitive   = true
   description = "The API Token for the GitHub API to be used on pull requests"
+}
+
+variable "terraform_state_bucket" {
+  type        = string
+  sensitive   = true
+  description = "The name of the bucket to store TF state in"
 }

@@ -1,6 +1,6 @@
 resource "github_repository" "repository" {
   name        = var.target_repository_name
-  description = "Repository for ${var.target_repository_name} in project ${var.gcp_project_id}"
+  description = "Repository for ${var.target_repository_name} in project ${var.project_id}"
 
   #checkov:skip=CKV_GIT_1:Public repos are fine
   #tfsec:ignore:github-repositories-private

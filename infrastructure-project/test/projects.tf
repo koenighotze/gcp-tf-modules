@@ -5,6 +5,6 @@ module "test_project" {
   project_name                    = "test-${random_uuid.id.result}"
   github_admin_token              = random_uuid.id.result
   github_api_label_token          = random_uuid.id.result
-  workload_identity_provider_name = random_uuid.id.result #var.workload_identity_provider_name
-  workload_identity_pool_id       = random_uuid.id.result #var.workload_identity_pool_id
+  workload_identity_provider_name = random_uuid.id.result
+  workload_identity_pool_id       = random_uuid.id.result
 }

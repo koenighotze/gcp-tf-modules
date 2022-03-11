@@ -1,6 +1,6 @@
 # Allow repository to use deployer service account
 resource "google_service_account_iam_binding" "workload_identity_sa_binding" {
-  service_account_id = var.service_account_id
+  service_account_id = data.google_service_account.deployer_sa.id
   role               = "roles/iam.workloadIdentityUser"
 
   members = [
