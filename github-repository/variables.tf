@@ -2,6 +2,7 @@ variable "codacy_api_token" {
   type        = string
   sensitive   = true
   description = "The API token for uploading coverage data"
+  # tfsec:ignore:general-secrets-no-plaintext-exposure
   default     = ""
 }
 
@@ -9,6 +10,7 @@ variable "docker_registry_username" {
   type        = string
   sensitive   = true
   description = "The username for uploading images"
+  # tfsec:ignore:general-secrets-no-plaintext-exposure
   default     = ""
 }
 
@@ -16,6 +18,7 @@ variable "docker_registry_token" {
   type        = string
   sensitive   = true
   description = "The API token for uploading images"
+  # tfsec:ignore:general-secrets-no-plaintext-exposure
   default     = ""
 }
 
