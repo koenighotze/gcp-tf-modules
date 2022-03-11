@@ -8,6 +8,7 @@ on:
 
 env:
   TF_IN_AUTOMATION: "true"
+  CLOUDSDK_CORE_PROJECT: "koenighotze-seed"
   # Note: this project has to exist for 'plan' to execute
   TF_project_id: "koenighotze-seed"
 
