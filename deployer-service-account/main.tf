@@ -6,13 +6,13 @@ locals {
 }
 
 resource "google_service_account" "cicd_cloudrun_sa" {
-  project      = var.gcp_project_id
+  project      = var.project_id
   account_id   = var.name
   display_name = "Service Account for CICD actions related to cloud run"
 }
 
 # resource "google_cloud_run_service_iam_member" "member" {
-#   project      = var.gcp_project_id
+#   project      = var.project_id
 #   service = google_cloud_run_service.default.name
 #   location = google_cloud_run_service.default.location
 
@@ -28,7 +28,7 @@ resource "google_service_account_key" "cicd_cloudrun_sa_key" {
 #tfsec:ignore:google-iam-no-privileged-service-accounts
 resource "google_project_iam_binding" "iam_binding_project" {
   for_each = setunion(toset(local.deployer_default_roles), var.additional_deployer_sa_roles)
-  project  = var.gcp_project_id
+  project  = var.project_id
   role     = each.value
 
   members = [
