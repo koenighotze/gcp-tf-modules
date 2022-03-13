@@ -10,4 +10,5 @@ module "test_project" {
   codacy_api_token= random_uuid.id.result
   docker_registry_username= random_uuid.id.result
   docker_registry_token= random_uuid.id.result
+  service_account_email = var.service_account_email
 }

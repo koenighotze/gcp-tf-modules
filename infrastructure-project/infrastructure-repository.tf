@@ -23,8 +23,7 @@ resource "github_repository" "infrastructure_repository" {
 resource "github_actions_secret" "gcp_projectid_secret" {
   for_each = {
     "ADMIN_GITHUB_TOKEN"       = var.github_admin_token
-    "CICD_SA_EMAIL_ADDRESS"    = google_service_account.service_account.email
-    "CICD_SA_ID"               = google_service_account.service_account.id
+    "CICD_SA_EMAIL_ADDRESS"    = var.service_account_email
     "CODACY_API_TOKEN"         = var.codacy_api_token
     "DOCKER_REGISTRY_TOKEN"    = var.docker_registry_token
     "DOCKER_REGISTRY_USERNAME" = var.docker_registry_username

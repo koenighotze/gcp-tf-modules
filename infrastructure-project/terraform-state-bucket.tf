@@ -13,5 +13,5 @@ resource "google_storage_bucket" "state_bucket" {
 resource "google_storage_bucket_iam_member" "bucket_iam_member" {
   bucket = google_storage_bucket.state_bucket.name
   role   = "roles/storage.admin"
-  member = "serviceAccount:${google_service_account.service_account.email}"
+  member = "serviceAccount:${var.service_account_email}"
 }

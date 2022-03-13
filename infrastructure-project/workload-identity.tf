@@ -12,7 +12,7 @@ resource "github_actions_secret" "workload_identity_pool_id" {
 
 # Allow repository to use deployer service account
 resource "google_service_account_iam_binding" "workload_identity_sa_binding" {
-  service_account_id = google_service_account.service_account.id
+  service_account_id = var.service_account_email
   role               = "roles/iam.workloadIdentityUser"
 
   members = [
