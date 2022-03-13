@@ -2,16 +2,16 @@ locals {
   project_roles = [
     "roles/logging.logWriter",
     "roles/viewer",
-    "roles/iam.serviceAccountCreator",
-    "roles/iam.serviceAccountDeleter",
-    "roles/iam.serviceAccountKeyAdmin"
+    "roles/iam.serviceAccountKeyAdmin",
+    "roles/iam.serviceAccountAdmin"
   ]
 }
 
 resource "google_service_account" "service_account" {
   project      = var.project_id
   account_id   = "infra-setup-sa"
-  display_name = "Service account for infrastructure activities on this project"
+  display_name = "Infrastructure Setup Service Account"
+  description  = "Service account for infrastructure activities on this project"
 }
 
 resource "time_rotating" "key_rotation" {
