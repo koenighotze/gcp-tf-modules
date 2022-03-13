@@ -3,7 +3,8 @@ locals {
     "roles/logging.logWriter",
     "roles/viewer",
     "roles/iam.serviceAccountKeyAdmin",
-    "roles/iam.serviceAccountAdmin"
+    "roles/iam.serviceAccountAdmin",
+    "roles/iam.securityAdmin"
   ]
 }
 
@@ -12,18 +13,6 @@ resource "google_service_account" "service_account" {
   account_id   = "infra-setup-sa"
   display_name = "Infrastructure Setup Service Account"
   description  = "Service account for infrastructure activities on this project"
-}
-
-resource "time_rotating" "key_rotation" {
-  rotation_days = 30
-}
-
-resource "google_service_account_key" "key" {
-  service_account_id = google_service_account.service_account.name
-
-  keepers = {
-    rotation_time = time_rotating.key_rotation.rotation_rfc3339
-  }
 }
 
 # This SA needs to be able to do some privileged work

@@ -5,6 +5,7 @@ resource "github_repository" "repository" {
   #checkov:skip=CKV_GIT_1:Public repos are fine
   #tfsec:ignore:github-repositories-private
   visibility             = "public"
+  archive_on_destroy     = true
   has_issues             = true
   has_projects           = false
   has_wiki               = false
