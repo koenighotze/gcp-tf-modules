@@ -7,4 +7,7 @@ module "test_project" {
   github_api_label_token          = random_uuid.id.result
   workload_identity_provider_name = random_uuid.id.result
   workload_identity_pool_id       = random_uuid.id.result
+  codacy_api_token= random_uuid.id.result
+  docker_registry_username= random_uuid.id.result
+  docker_registry_token= random_uuid.id.result
 }
