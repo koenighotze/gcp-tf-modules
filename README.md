@@ -15,3 +15,13 @@ pass GH Label Token to repos
 pass SA name to repos
 put secrets into secret manager
 "general-secrets-no-plaintext-exposure"
+
+platform projekt mit GCR
+SA braucht Rechte auf GCR
+Credentials fuer GCR
+
+
+Codacy token
+Docker-hub credentials
+
+
