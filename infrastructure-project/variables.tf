@@ -65,5 +65,4 @@ variable "service_account_email" {
   type        = string
   sensitive   = true
   description = "The Email of the Admin service account for this project"
-
 }

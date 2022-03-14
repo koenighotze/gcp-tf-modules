@@ -8,7 +8,8 @@ locals {
 resource "google_service_account" "cicd_cloudrun_sa" {
   project      = var.project_id
   account_id   = var.name
-  display_name = "Service Account for CICD actions related to cloud run"
+  display_name = var.name
+  description  = var.description
 }
 
 resource "google_service_account_key" "cicd_cloudrun_sa_key" {

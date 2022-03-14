@@ -6,8 +6,15 @@ variable "project_id" {
 
 variable "name" {
   type        = string
-  sensitive   = true
+  sensitive   = false
   description = "The name of the service account"
+}
+
+variable "description" {
+  type        = string
+  sensitive   = false
+  default     = ""
+  description = "The description of the service account"
 }
 
 variable "additional_deployer_sa_roles" {
