@@ -30,6 +30,7 @@ resource "github_actions_secret" "gcp_projectid_secret" {
     "GCP_PROJECT_ID"           = var.project_id
     "GH_TOKEN_FOR_LABELING"    = var.github_api_label_token
     "TERRAFORM_STATE_BUCKET"   = google_storage_bucket.state_bucket.name
+    "CONTAINER_REGISTRY"       = var.container_registry
   }
 
   repository      = github_repository.infrastructure_repository.id

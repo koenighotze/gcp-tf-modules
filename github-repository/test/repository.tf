@@ -12,4 +12,5 @@ module "service_repository" {
   github_admin_token              = random_uuid.id.result
   github_non_admin_token          = random_uuid.id.result
   terraform_state_bucket          = random_uuid.id.result
+  container_registry              = random_uuid.id.result
 }

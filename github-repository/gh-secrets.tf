@@ -11,6 +11,7 @@ resource "github_actions_secret" "gcp_projectid_secret" {
     "TERRAFORM_STATE_BUCKET"     = var.terraform_state_bucket
     "WORKLOAD_IDENTITY_POOL_ID"  = var.workload_identity_pool_id
     "WORKLOAD_IDENTITY_PROVIDER" = var.workload_identity_provider_name
+    "CONTAINER_REGISTRY"         = var.container_registry
   }
 
   repository      = github_repository.repository.id

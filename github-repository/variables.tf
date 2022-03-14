@@ -58,3 +58,9 @@ variable "terraform_state_bucket" {
   sensitive   = true
   description = "The name of the bucket to store TF state in"
 }
+
+variable "container_registry" {
+  type        = string
+  sensitive   = false
+  description = "The container registry for OCI images"
+}

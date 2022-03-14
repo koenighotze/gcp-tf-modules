@@ -66,3 +66,9 @@ variable "service_account_email" {
   sensitive   = true
   description = "The Email of the Admin service account for this project"
 }
+
+variable "container_registry" {
+  type        = string
+  sensitive   = false
+  description = "The container registry for OCI images"
+}

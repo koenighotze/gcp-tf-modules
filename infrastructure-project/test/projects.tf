@@ -11,4 +11,5 @@ module "test_project" {
   docker_registry_username        = random_uuid.id.result
   docker_registry_token           = random_uuid.id.result
   service_account_email           = var.service_account_email
+  container_registry              = random_uuid.id.result
 }
