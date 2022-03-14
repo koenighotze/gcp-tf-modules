@@ -62,8 +62,8 @@ variable "docker_registry_token" {
 }
 
 variable "service_account_email" {
-  type  = string
-  sensitive = true
+  type        = string
+  sensitive   = true
   description = "The Email of the Admin service account for this project"
 
 }
