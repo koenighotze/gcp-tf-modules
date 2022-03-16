@@ -12,10 +12,6 @@ resource "google_service_account" "cicd_cloudrun_sa" {
   description  = var.description
 }
 
-resource "google_service_account_key" "cicd_cloudrun_sa_key" {
-  service_account_id = google_service_account.cicd_cloudrun_sa.name
-}
-
 # This SA needs to be able to do some privileged work
 #tfsec:ignore:google-iam-no-privileged-service-accounts
 resource "google_project_iam_binding" "iam_binding_project" {
