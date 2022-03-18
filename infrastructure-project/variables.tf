@@ -1,6 +1,3 @@
-# TODO Add labels to gcp resources
-# labels = merge(local.common_labels, { name = "${var.environment}-rtb" })
-
 variable "project_id" {
   type        = string
   sensitive   = false
@@ -71,4 +68,9 @@ variable "container_registry" {
   type        = string
   sensitive   = false
   description = "The container registry for OCI images"
+}
+
+variable "additional_project_apis" {
+  description = "List of additional apis to be activated on this project"
+  default     = []
 }
