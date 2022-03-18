@@ -7,8 +7,9 @@ on:
   workflow_dispatch:
 
 env:
-  TF_IN_AUTOMATION: "true"
-  TF_INPUT: "false"
+  TF_VAR_service_account_email: ${{ secrets.CICD_SA_EMAIL_ADDRESS }}
+  TF_IN_AUTOMATION: true
+  TF_INPUT: false
   CLOUDSDK_CORE_PROJECT: "koenighotze-seed"
   # Note: this project has to exist for 'plan' to execute
   TF_VAR_project_id: "koenighotze-seed"
@@ -30,7 +31,7 @@ jobs:
         with:
           workload_identity_provider: ${{ secrets.WORKLOAD_IDENTITY_PROVIDER }}
           service_account: ${{ secrets.CICD_SA_EMAIL_ADDRESS }}
-          token_format: 'access_token'
+          token_format: "access_token"
       - name: Setting up GCP environment
         uses: google-github-actions/setup-gcloud@v0.5.1
       - name: Setup Terraform
@@ -55,7 +56,7 @@ jobs:
         with:
           workload_identity_provider: ${{ secrets.WORKLOAD_IDENTITY_PROVIDER }}
           service_account: ${{ secrets.CICD_SA_EMAIL_ADDRESS }}
-          token_format: 'access_token'
+          token_format: "access_token"
       - name: Setting up GCP environment
         uses: google-github-actions/setup-gcloud@v0.5.1
       - name: Setup Terraform
@@ -82,7 +83,7 @@ jobs:
         with:
           workload_identity_provider: ${{ secrets.WORKLOAD_IDENTITY_PROVIDER }}
           service_account: ${{ secrets.CICD_SA_EMAIL_ADDRESS }}
-          token_format: 'access_token'
+          token_format: "access_token"
       - name: Setting up GCP environment
         uses: google-github-actions/setup-gcloud@v0.5.1
       - name: Setup Terraform
@@ -93,4 +94,3 @@ jobs:
         run: terraform validate
       - name: Plan
         run: terraform plan -no-color
-
