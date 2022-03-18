@@ -7,9 +7,9 @@ locals {
 
 resource "google_service_account" "cicd_cloudrun_sa" {
   project      = var.project_id
-  account_id   = var.name
+  account_id   = "${var.name}-cicd"
   display_name = var.name
-  description  = var.description
+  description  = "CI/CD service account for ${var.project_id}"
 }
 
 # This SA needs to be able to do some privileged work
