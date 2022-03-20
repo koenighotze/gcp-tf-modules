@@ -5,7 +5,7 @@ locals {
   ]
 }
 
-resource "google_service_account" "cicd_cloudrun_sa" {
+resource "google_service_account" "sa" {
   project      = var.project_id
   account_id   = "${var.name}-cicd"
   display_name = var.name
@@ -20,6 +20,6 @@ resource "google_project_iam_binding" "iam_binding_project" {
   role     = each.value
 
   members = [
-    "serviceAccount:${google_service_account.cicd_cloudrun_sa.email}"
+    "serviceAccount:${google_service_account.sa.email}"
   ]
 }
