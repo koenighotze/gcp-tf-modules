@@ -6,12 +6,14 @@ variable "codacy_api_token" {
 
 variable "docker_registry_username" {
   type        = string
+  default     = ""
   sensitive   = true
   description = "The username for uploading images"
 }
 
 variable "docker_registry_token" {
   type        = string
+  default     = ""
   sensitive   = true
   description = "The API token for uploading images"
 }
