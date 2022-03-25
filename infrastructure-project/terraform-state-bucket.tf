@@ -4,6 +4,7 @@ resource "google_storage_bucket" "state_bucket" {
   name                        = "${var.project_id}-state"
   location                    = var.location
   uniform_bucket_level_access = true
+  force_destroy               = true
 
   versioning {
     enabled = false
