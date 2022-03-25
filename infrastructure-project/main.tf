@@ -18,7 +18,6 @@ resource "google_project_service" "common_project_services" {
   for_each                   = setunion(toset(local.common_apis), var.additional_project_apis)
   project                    = var.project_id
   service                    = each.value
-  disable_on_destroy         = true
   disable_dependent_services = true
 }
 
