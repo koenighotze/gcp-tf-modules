@@ -1,5 +1,5 @@
 locals {
-  repository_name = var.project_name
+  repository_name = "${var.project_name}-infrastructure-${var.project_id}"
 }
 
 resource "github_repository" "infrastructure_repository" {

@@ -1,5 +1,5 @@
 resource "github_repository" "repository" {
-  name        = var.target_repository_name
+  name        = "${var.target_repository_name}-${var.project_id}"
   description = "Repository for ${var.target_repository_name} in project ${var.project_id}"
 
   #checkov:skip=CKV_GIT_1:Public repos are fine
