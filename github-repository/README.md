@@ -8,13 +8,14 @@
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.1.6 |
 | <a name="requirement_github"></a> [github](#requirement\_github) | >= 4.0 |
+| <a name="requirement_google"></a> [google](#requirement\_google) | >= 3.52.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
 | <a name="provider_github"></a> [github](#provider\_github) | >= 4.0 |
-| <a name="provider_google"></a> [google](#provider\_google) | n/a |
+| <a name="provider_google"></a> [google](#provider\_google) | >= 3.52.0 |
 
 ## Modules
 
@@ -27,14 +28,14 @@ No modules.
 | [github_actions_secret.gcp_projectid_secret](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/actions_secret) | resource |
 | [github_branch_protection.main](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/branch_protection) | resource |
 | [github_repository.repository](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/repository) | resource |
-| [google_service_account_iam_binding.workload_identity_sa_binding](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/service_account_iam_binding) | resource |
 | [google_service_account.deployer_sa](https://registry.terraform.io/providers/hashicorp/google/latest/docs/data-sources/service_account) | data source |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_codacy_api_token"></a> [codacy\_api\_token](#input\_codacy\_api\_token) | The API token for uploading coverage data | `string` | `""` | no |
+| <a name="input_codacy_api_token"></a> [codacy\_api\_token](#input\_codacy\_api\_token) | The API token for uploading coverage data | `string` | n/a | yes |
+| <a name="input_container_registry"></a> [container\_registry](#input\_container\_registry) | The container registry for OCI images | `string` | n/a | yes |
 | <a name="input_deployer_service_account_email"></a> [deployer\_service\_account\_email](#input\_deployer\_service\_account\_email) | The email of the service account used in ci/cd | `string` | n/a | yes |
 | <a name="input_docker_registry_token"></a> [docker\_registry\_token](#input\_docker\_registry\_token) | The API token for uploading images | `string` | `""` | no |
 | <a name="input_docker_registry_username"></a> [docker\_registry\_username](#input\_docker\_registry\_username) | The username for uploading images | `string` | `""` | no |
@@ -50,5 +51,5 @@ No modules.
 
 | Name | Description |
 |------|-------------|
-| <a name="output_repository"></a> [repository](#output\_repository) | n/a |
+| <a name="output_full_name"></a> [full\_name](#output\_full\_name) | n/a |
 <!-- END_TF_DOCS -->
