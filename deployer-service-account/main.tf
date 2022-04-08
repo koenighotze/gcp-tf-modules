@@ -14,12 +14,9 @@ resource "google_service_account" "sa" {
 
 # This SA needs to be able to do some privileged work
 #tfsec:ignore:google-iam-no-privileged-service-accounts
-resource "google_project_iam_binding" "iam_binding_project" {
+resource "google_project_iam_member" "iam_member_project" {
   for_each = setunion(toset(local.deployer_default_roles), var.additional_deployer_sa_roles)
   project  = var.project_id
   role     = each.value
-
-  members = [
-    "serviceAccount:${google_service_account.sa.email}"
-  ]
+  member   = "serviceAccount:${google_service_account.sa.email}"
 }
