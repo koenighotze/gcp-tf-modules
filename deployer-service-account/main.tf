@@ -1,7 +1,8 @@
 locals {
   deployer_default_roles = [
     "roles/logging.logWriter",
-    "roles/viewer"
+    "roles/viewer",
+    "roles/iam.serviceAccountTokenCreator"
   ]
 }
 
