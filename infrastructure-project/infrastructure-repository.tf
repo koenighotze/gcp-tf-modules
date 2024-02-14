@@ -48,4 +48,6 @@ resource "github_branch_protection" "main" {
   allows_deletions                = false
   require_conversation_resolution = true
   allows_force_pushes             = false
+  require_signed_commits          = true
+
 }

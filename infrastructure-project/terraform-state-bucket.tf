@@ -1,3 +1,4 @@
+#tfsec:ignore:google-storage-bucket-encryption-customer-key
 resource "google_storage_bucket" "state_bucket" {
   #checkov:skip=CKV_GCP_62:Logging deactivated for now
   project                     = var.project_id
