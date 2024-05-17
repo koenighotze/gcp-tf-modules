@@ -12,10 +12,10 @@ terraform {
     }
 
     github = {
-      source = "integrations/github"
+      source = "hashicorp/github"
       # version = "~> 6.0"
       # version = "~> 5.0"
-      version = "~> 4.0"
+      version = "~> 5.0"
     }
 
     random = {
