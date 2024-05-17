@@ -3,7 +3,6 @@ name: QA
 on:
   push:
     branches: ["main"]
-    tags-ignore: ["**"]
   workflow_dispatch:
 
 env:
@@ -27,8 +26,6 @@ jobs:
         uses: hashicorp/setup-terraform@v3.0.0
       - uses: terraform-linters/setup-tflint@v4
         name: Setting up TFLint
-        with:
-          tflint_version: v0.29.0
       - name: Initializing TFLint
         run: tflint --init
       - name: Linting
@@ -36,6 +33,7 @@ jobs:
 
   qa:
     runs-on: ubuntu-20.04
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
