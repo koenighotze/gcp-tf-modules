@@ -23,7 +23,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v3.0.0
+        uses: hashicorp/setup-terraform@v3.1.1
       - uses: terraform-linters/setup-tflint@v4
         name: Setting up TFLint
       - name: Initializing TFLint
