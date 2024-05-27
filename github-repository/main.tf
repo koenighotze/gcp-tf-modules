@@ -3,7 +3,6 @@ resource "github_repository" "repository" {
   description = "Repository for ${var.target_repository_name} in project ${var.project_id}"
 
   #checkov:skip=CKV_GIT_1:Public repos are fine
-  #tfsec:ignore:github-repositories-private
   visibility             = "public"
   archive_on_destroy     = true
   has_issues             = true
