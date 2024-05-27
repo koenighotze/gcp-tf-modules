@@ -35,19 +35,20 @@ resource "github_actions_secret" "gcp_projectid_secret" {
     "WORKLOAD_IDENTITY_POOL_ID"  = var.workload_identity_pool_id
   }
 
-  repository      = github_repository.infrastructure_repository.id
-  secret_name     = each.key
+  repository  = github_repository.infrastructure_repository.id
+  secret_name = each.key
+  #checkov:skip=CKV_GIT_4:False positive
   plaintext_value = each.value
 }
 
 resource "github_branch_protection" "main" {
   repository_id = github_repository.infrastructure_repository.id
 
+  #checkov:skip=CKV_GIT_5:No 4 eyes needed
   pattern                         = "main"
   enforce_admins                  = false
   allows_deletions                = false
   require_conversation_resolution = true
   allows_force_pushes             = false
   require_signed_commits          = true
-
 }

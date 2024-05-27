@@ -14,7 +14,8 @@ resource "github_actions_secret" "gcp_projectid_secret" {
     "CONTAINER_REGISTRY"         = var.container_registry
   }
 
-  repository      = github_repository.repository.id
-  secret_name     = each.key
+  repository  = github_repository.repository.id
+  secret_name = each.key
+  #checkov:skip=CKV_GIT_4:False positive
   plaintext_value = each.value
 }

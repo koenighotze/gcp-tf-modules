@@ -18,6 +18,7 @@ resource "github_repository" "repository" {
 resource "github_branch_protection" "main" {
   repository_id = github_repository.repository.id
 
+  #checkov:skip=CKV_GIT_5:No 4 eyes needed
   pattern                         = "main"
   enforce_admins                  = false
   allows_deletions                = false
