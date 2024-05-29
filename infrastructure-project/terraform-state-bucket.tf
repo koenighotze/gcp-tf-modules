@@ -1,4 +1,5 @@
 #tfsec:ignore:google-storage-bucket-encryption-customer-key
+#trivy:ignore:avd-gcp-0066
 resource "google_storage_bucket" "state_bucket" {
   #checkov:skip=CKV_GCP_62:Logging deactivated for now
   project                     = var.project_id
@@ -6,8 +7,7 @@ resource "google_storage_bucket" "state_bucket" {
   location                    = var.location
   uniform_bucket_level_access = true
   force_destroy               = true
-
-  public_access_prevention = "enforced"
+  public_access_prevention    = "enforced"
 
   versioning {
     enabled = true
