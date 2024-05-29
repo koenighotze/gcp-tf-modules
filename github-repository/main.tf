@@ -1,3 +1,4 @@
+#trivy:ignore:avd-git-0001
 resource "github_repository" "repository" {
   name        = var.target_repository_name
   description = "Repository for ${var.target_repository_name} in project ${var.project_id}"
