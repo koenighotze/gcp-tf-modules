@@ -16,12 +16,19 @@ permissions:
   id-token: write
 
 jobs:
-  deployer-service-account:
+  test-module:
+    strategy:
+      matrix:
+        module:
+          - deployer-service-account
+          - infrastructure-project
+          - github-repository
+
     runs-on: ubuntu-20.04
 
     defaults:
       run:
-        working-directory: deployer-service-account/test
+        working-directory: ${{ matrix.module }}/test
 
     steps:
       - name: Checkout
@@ -40,55 +47,79 @@ jobs:
       - name: Validate
         run: terraform validate
 
-  infrastructure-project:
-    runs-on: ubuntu-20.04
+  # deployer-service-account:
+  #   runs-on: ubuntu-20.04
 
-    defaults:
-      run:
-        working-directory: infrastructure-project/test
+  #   defaults:
+  #     run:
+  #       working-directory: deployer-service-account/test
 
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Authenticating
-        uses: google-github-actions/auth@v2.1.3
-        with:
-          workload_identity_provider: ${{ secrets.WORKLOAD_IDENTITY_PROVIDER }}
-          service_account: ${{ secrets.CICD_SA_EMAIL_ADDRESS }}
-          # token_format: "access_token"
-      - name: Setting up GCP environment
-        uses: google-github-actions/setup-gcloud@v2.1.0
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v3.1.1
-      - name: Init
-        run: terraform init
-      - name: Validate
-        run: terraform validate
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v4
+  #     - name: Authenticating
+  #       uses: google-github-actions/auth@v2.1.3
+  #       with:
+  #         workload_identity_provider: ${{ secrets.WORKLOAD_IDENTITY_PROVIDER }}
+  #         service_account: ${{ secrets.CICD_SA_EMAIL_ADDRESS }}
+  #     - name: Setting up GCP environment
+  #       uses: google-github-actions/setup-gcloud@v2.1.0
+  #     - name: Setup Terraform
+  #       uses: hashicorp/setup-terraform@v3.1.1
+  #     - name: Init
+  #       run: terraform init
+  #     - name: Validate
+  #       run: terraform validate
 
-  github-repository:
-    runs-on: ubuntu-20.04
+  # infrastructure-project:
+  #   runs-on: ubuntu-20.04
 
-    defaults:
-      run:
-        working-directory: github-repository/test
+  #   defaults:
+  #     run:
+  #       working-directory: infrastructure-project/test
 
-    env:
-      TF_VAR_sa_email: ${{ secrets.CICD_SA_EMAIL_ADDRESS }}
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v4
+  #     - name: Authenticating
+  #       uses: google-github-actions/auth@v2.1.3
+  #       with:
+  #         workload_identity_provider: ${{ secrets.WORKLOAD_IDENTITY_PROVIDER }}
+  #         service_account: ${{ secrets.CICD_SA_EMAIL_ADDRESS }}
+  #         # token_format: "access_token"
+  #     - name: Setting up GCP environment
+  #       uses: google-github-actions/setup-gcloud@v2.1.0
+  #     - name: Setup Terraform
+  #       uses: hashicorp/setup-terraform@v3.1.1
+  #     - name: Init
+  #       run: terraform init
+  #     - name: Validate
+  #       run: terraform validate
 
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Authenticating
-        uses: google-github-actions/auth@v2.1.3
-        with:
-          workload_identity_provider: ${{ secrets.WORKLOAD_IDENTITY_PROVIDER }}
-          service_account: ${{ secrets.CICD_SA_EMAIL_ADDRESS }}
-          # token_format: "access_token"
-      - name: Setting up GCP environment
-        uses: google-github-actions/setup-gcloud@v2.1.0
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v3.1.1
-      - name: Init
-        run: terraform init
-      - name: Validate
-        run: terraform validate
+  # github-repository:
+  #   runs-on: ubuntu-20.04
+
+  #   defaults:
+  #     run:
+  #       working-directory: github-repository/test
+
+  #   env:
+  #     TF_VAR_sa_email: ${{ secrets.CICD_SA_EMAIL_ADDRESS }}
+
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v4
+  #     - name: Authenticating
+  #       uses: google-github-actions/auth@v2.1.3
+  #       with:
+  #         workload_identity_provider: ${{ secrets.WORKLOAD_IDENTITY_PROVIDER }}
+  #         service_account: ${{ secrets.CICD_SA_EMAIL_ADDRESS }}
+  #         # token_format: "access_token"
+  #     - name: Setting up GCP environment
+  #       uses: google-github-actions/setup-gcloud@v2.1.0
+  #     - name: Setup Terraform
+  #       uses: hashicorp/setup-terraform@v3.1.1
+  #     - name: Init
+  #       run: terraform init
+  #     - name: Validate
+  #       run: terraform validate
