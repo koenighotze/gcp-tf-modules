@@ -41,7 +41,7 @@ jobs:
       - name: Setting up GCP environment
         uses: google-github-actions/setup-gcloud@v3.0.1
       - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v3.1.1
+        uses: hashicorp/setup-terraform@v4
       - name: Init
         run: terraform init
       - name: Validate
@@ -65,7 +65,7 @@ jobs:
   #     - name: Setting up GCP environment
   #       uses: google-github-actions/setup-gcloud@v3.0.1
   #     - name: Setup Terraform
-  #       uses: hashicorp/setup-terraform@v3.1.1
+  #       uses: hashicorp/setup-terraform@v4
   #     - name: Init
   #       run: terraform init
   #     - name: Validate
@@ -90,7 +90,7 @@ jobs:
   #     - name: Setting up GCP environment
   #       uses: google-github-actions/setup-gcloud@v3.0.1
   #     - name: Setup Terraform
-  #       uses: hashicorp/setup-terraform@v3.1.1
+  #       uses: hashicorp/setup-terraform@v4
   #     - name: Init
   #       run: terraform init
   #     - name: Validate
@@ -118,7 +118,7 @@ jobs:
   #     - name: Setting up GCP environment
   #       uses: google-github-actions/setup-gcloud@v3.0.1
   #     - name: Setup Terraform
-  #       uses: hashicorp/setup-terraform@v3.1.1
+  #       uses: hashicorp/setup-terraform@v4
   #     - name: Init
   #       run: terraform init
   #     - name: Validate
